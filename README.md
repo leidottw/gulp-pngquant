@@ -1,3 +1,14 @@
+# gulp-pngquant
+
+## Installation
+
+```bash
+npm install gulp-pngquant
+```
+
+## Usage
+
+```js
 const gulp = require('gulp');
 const gulpPngquant = require('gulp-pngquant');
 
@@ -10,3 +21,4 @@ gulp.task('compress', function() {
 });
 
 gulp.task('default', ['compress']);
+```
