@@ -1,13 +1,20 @@
 const through = require('through2');
 const gutil = require('gulp-util');
 const PluginError = gutil.PluginError;
-const pngquant = require('node-pngquant-native');
+const pngquant = require('pngquant-bin');
+const fs = require('fs');
+const execFileSync = require('child_process').execFileSync;
 
 // consts
 const PLUGIN_NAME = 'gulp-pngquant';
 
 // plugin level function (dealing with files)
 function gulpPngquant(options) {
+    var opts = ['in.png', '-o', 'out.png'];
+    for(key in options) {
+        opts.push('--' + key, options[key]);
+    }
+
     // creating a stream through which each file will pass
     var stream = through.obj(function(file, enc, cb) {
         if (file.isStream()) {
@@ -16,7 +23,13 @@ function gulpPngquant(options) {
         }
 
         if (file.isBuffer()) {
-            file.contents = pngquant.compress(file.contents, options);
+            fs.writeFileSync('in.png', file.contents);
+            execFileSync(pngquant, opts);
+
+            file.contents = fs.readFileSync('out.png');
+
+            fs.unlinkSync('in.png');
+            fs.unlinkSync('out.png');
         }
 
         // make sure the file goes through the next gulp plugin

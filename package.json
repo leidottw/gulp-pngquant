@@ -14,7 +14,7 @@
   "license": "ISC",
   "dependencies": {
     "gulp-util": "^3.0.7",
-    "node-pngquant-native": "^1.0.4",
+    "pngquant-bin": "^3.1.0",
     "through2": "^2.0.1"
   }
 }
