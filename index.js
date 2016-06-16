@@ -4,6 +4,7 @@ const PluginError = gutil.PluginError;
 const pngquant = require('pngquant-bin');
 const fs = require('fs');
 const execFileSync = require('child_process').execFileSync;
+const chalk = require('chalk');
 
 // consts
 const PLUGIN_NAME = 'gulp-pngquant';
@@ -37,6 +38,8 @@ function gulpPngquant(options) {
 
         // tell the stream engine that we are done with this file
         cb();
+    }, function() {
+        gutil.log('Finished', '\'' + chalk.cyan(PLUGIN_NAME));
     });
 
     // returning the file stream
