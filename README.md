@@ -27,4 +27,4 @@ gulp.task('default', ['compress']);
 
 ## License
 
-ISC
+MIT © [leidottw](https://github.com/leidottw)

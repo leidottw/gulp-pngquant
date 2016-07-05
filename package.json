@@ -12,7 +12,7 @@
     "url": "https://github.com/leidottw/gulp-pngquant"
   },
   "author": "leidottw",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "chalk": "1.1.3",
     "gulp-util": "3.0.7",
