@@ -12,10 +12,11 @@ const PLUGIN_NAME = 'gulp-pngquant';
 
 // plugin level function (dealing with files)
 function gulpPngquant(options) {
-    var opts = ['in.png', '-o', 'out.png'];
+    var opts = [];
     for(key in options) {
         opts.push('--' + key, options[key]);
     }
+    opts.push('-');
 
     // creating a stream through which each file will pass
     var stream = through.obj(function(file, enc, cb) {
@@ -27,7 +28,7 @@ function gulpPngquant(options) {
         if (file.isBuffer()) {
             console.log(chalk.blue('pngquant compressing: ') + file.relative);
 
-            file.contents = spawnSync(pngquant, ['-'], {
+            file.contents = spawnSync(pngquant, opts, {
                 input: file.contents
             }).stdout;
         }
