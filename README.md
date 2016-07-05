@@ -1,9 +1,11 @@
 # gulp-pngquant
 
+> pngquant plugin
+
 ## Installation
 
 ```bash
-npm install gulp-pngquant
+$ npm install gulp-pngquant
 ```
 
 ## Usage
@@ -22,3 +24,7 @@ gulp.task('compress', function() {
 
 gulp.task('default', ['compress']);
 ```
+
+## License
+
+ISC
