@@ -2,8 +2,9 @@ const through = require('through2');
 const gutil = require('gulp-util');
 const PluginError = gutil.PluginError;
 const pngquant = require('pngquant-bin');
-const fs = require('fs');
 const execFileSync = require('child_process').execFileSync;
+const spawnSync = require('child_process').spawnSync;
+
 const chalk = require('chalk');
 
 // consts
@@ -24,13 +25,11 @@ function gulpPngquant(options) {
         }
 
         if (file.isBuffer()) {
-            fs.writeFileSync('in.png', file.contents);
-            execFileSync(pngquant, opts);
+            console.log(chalk.blue('pngquant compressing: ') + file.relative);
 
-            file.contents = fs.readFileSync('out.png');
-
-            fs.unlinkSync('in.png');
-            fs.unlinkSync('out.png');
+            file.contents = spawnSync(pngquant, ['-'], {
+                input: file.contents
+            }).stdout;
         }
 
         // make sure the file goes through the next gulp plugin
