@@ -40,6 +40,7 @@ function gulpPngquant(options) {
         cb();
     }, function() {
         gutil.log('Finished', '\'' + chalk.cyan(PLUGIN_NAME));
+        this.emit('end');
     });
 
     // returning the file stream
