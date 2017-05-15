@@ -38,8 +38,9 @@ function gulpPngquant(options) {
 
         // tell the stream engine that we are done with this file
         cb();
-    }, function() {
+    }, function(flush) {
         gutil.log('Finished', '\'' + chalk.cyan(PLUGIN_NAME));
+        flush();
     });
 
     // returning the file stream
