@@ -11,7 +11,7 @@ const chalk = require('chalk');
 const PLUGIN_NAME = 'gulp-pngquant';
 
 // plugin level function (dealing with files)
-function gulpPngquant(options) {
+function gulpPngquant(options, customPngquantPath) {
     var opts = [];
     for(key in options) {
         opts.push('--' + key, options[key]);
@@ -28,7 +28,7 @@ function gulpPngquant(options) {
         if (file.isBuffer()) {
             console.log(chalk.blue('pngquant compressing: ') + file.relative);
 
-            file.contents = spawnSync(pngquant, opts, {
+            file.contents = spawnSync(customPngquantPath || pngquant, opts, {
                 input: file.contents
             }).stdout;
         }

@@ -1,6 +1,6 @@
 {
   "name": "gulp-pngquant",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "pngquant plugin",
   "main": "index.js",
   "scripts": {
