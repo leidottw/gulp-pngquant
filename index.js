@@ -1,6 +1,6 @@
 const through = require('through2');
-const gutil = require('gulp-util');
-const PluginError = gutil.PluginError;
+const log = require('fancy-log');
+const PluginError = require('plugin-error');
 const pngquant = require('pngquant-bin');
 const execFileSync = require('child_process').execFileSync;
 const spawnSync = require('child_process').spawnSync;
@@ -39,7 +39,7 @@ function gulpPngquant(options, customPngquantPath) {
         // tell the stream engine that we are done with this file
         cb();
     }, function(flush) {
-        gutil.log('Finished', '\'' + chalk.cyan(PLUGIN_NAME));
+        log('Finished', '\'' + chalk.cyan(PLUGIN_NAME));
         flush();
     });
 
